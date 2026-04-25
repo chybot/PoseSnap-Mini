@@ -1,4 +1,5 @@
 {
+  "navigationStyle": "custom",
   "navigationBarTitleText": "拍照对比",
   "usingComponents": {}
 }

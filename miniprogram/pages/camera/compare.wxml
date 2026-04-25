@@ -1,8 +1,16 @@
 <view class="compare-page">
-  <!-- Title -->
-  <view class="compare-title">
-    <text class="title-text">拍照对比</text>
-    <text wx:if="{{matchScore > 0}}" class="title-score {{matchScore > 80 ? 'high' : matchScore > 50 ? 'medium' : ''}}">
+  <!-- Custom nav bar (dark) -->
+  <view class="custom-nav dark" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-content">
+      <view class="nav-back" bindtap="goBack">‹</view>
+      <text class="nav-title">拍照对比</text>
+    </view>
+  </view>
+  <view style="height: {{navBarHeight}}px;" />
+
+  <!-- Score -->
+  <view wx:if="{{matchScore > 0}}" class="score-bar">
+    <text class="score-text {{matchScore > 80 ? 'high' : matchScore > 50 ? 'medium' : ''}}">
       {{matchScore}}分
     </text>
   </view>

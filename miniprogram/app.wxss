@@ -17,6 +17,55 @@ page {
   background-color: var(--bg-secondary);
 }
 
+/* Custom nav bar */
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #fff;
+}
+
+.nav-content {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 100rpx;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.nav-back {
+  position: absolute;
+  left: 24rpx;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding-right: 20rpx;
+  font-size: 36rpx;
+  color: var(--text-primary);
+}
+
+.custom-nav.dark {
+  background: #1a1a1a;
+}
+
+.custom-nav.dark .nav-title {
+  color: #fff;
+}
+
+.custom-nav.dark .nav-back {
+  color: #fff;
+}
+
 /* Utility classes */
 .flex-center {
   display: flex;

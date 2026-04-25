@@ -1,7 +1,11 @@
 const poseStore = require('../../services/pose-store')
 
+const app = getApp()
+
 Page({
   data: {
+    statusBarHeight: 44,
+    navBarHeight: 88,
     categories: [],
     currentCategory: 'all',
     difficulty: '',
@@ -12,6 +16,8 @@ Page({
 
   onLoad() {
     this.setData({
+      statusBarHeight: app.globalData.statusBarHeight,
+      navBarHeight: app.globalData.navBarHeight,
       categories: poseStore.categories,
     })
     this._updatePoses()

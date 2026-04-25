@@ -6,20 +6,12 @@
   flex-direction: column;
 }
 
-.compare-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16rpx 0;
+.score-bar {
+  text-align: center;
+  padding: 8rpx 0;
 }
 
-.title-text {
-  color: #fff;
-  font-size: 36rpx;
-  font-weight: bold;
-}
-
-.title-score {
+.score-text {
   color: #fff;
   font-size: 32rpx;
   font-weight: bold;
@@ -28,8 +20,8 @@
   background: rgba(255,255,255,0.2);
 }
 
-.title-score.high { color: #4CAF50; }
-.title-score.medium { color: #FF9800; }
+.score-text.high { color: #4CAF50; }
+.score-text.medium { color: #FF9800; }
 
 .compare-container {
   display: flex;

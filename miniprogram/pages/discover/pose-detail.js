@@ -1,12 +1,20 @@
 const poseStore = require('../../services/pose-store')
+const app = getApp()
 
 Page({
   data: {
+    statusBarHeight: 44,
+    navBarHeight: 88,
     pose: null,
     isFavorite: false,
   },
 
   onLoad(options) {
+    this.setData({
+      statusBarHeight: app.globalData.statusBarHeight,
+      navBarHeight: app.globalData.navBarHeight,
+    })
+
     const id = options.id
     const pose = poseStore.getPoseById(id)
     if (pose) {
@@ -14,8 +22,11 @@ Page({
         pose,
         isFavorite: poseStore.isFavorite(id),
       })
-      wx.setNavigationBarTitle({ title: pose.name })
     }
+  },
+
+  goBack() {
+    wx.navigateBack()
   },
 
   toggleFavorite() {

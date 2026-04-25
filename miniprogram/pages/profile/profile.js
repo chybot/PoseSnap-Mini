@@ -1,12 +1,22 @@
 const poseStore = require('../../services/pose-store')
+const app = getApp()
 
 Page({
   data: {
+    statusBarHeight: 44,
+    navBarHeight: 88,
     stats: {
       totalPhotos: 0,
       favCount: 0,
       bestScore: 0,
     },
+  },
+
+  onLoad() {
+    this.setData({
+      statusBarHeight: app.globalData.statusBarHeight,
+      navBarHeight: app.globalData.navBarHeight,
+    })
   },
 
   onShow() {
