@@ -10,11 +10,17 @@ App({
   },
 
   onLaunch() {
-    const systemInfo = wx.getWindowInfo()
-    this.globalData.systemInfo = systemInfo
-    this.globalData.screenWidth = systemInfo.screenWidth
-    this.globalData.screenHeight = systemInfo.screenHeight
-    this.globalData.statusBarHeight = systemInfo.statusBarHeight || 44
-    this.globalData.navBarHeight = (systemInfo.statusBarHeight || 44) + 44
+    try {
+      const systemInfo = wx.getWindowInfo()
+      if (systemInfo) {
+        this.globalData.systemInfo = systemInfo
+        this.globalData.screenWidth = systemInfo.screenWidth || 375
+        this.globalData.screenHeight = systemInfo.screenHeight || 667
+        this.globalData.statusBarHeight = systemInfo.statusBarHeight || 44
+        this.globalData.navBarHeight = (systemInfo.statusBarHeight || 44) + 44
+      }
+    } catch (e) {
+      console.warn('[App] getWindowInfo failed:', e)
+    }
   },
 })

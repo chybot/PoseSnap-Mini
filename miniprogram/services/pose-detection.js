@@ -40,12 +40,27 @@ class PoseDetectionService {
   start(cameraId) {
     if (this.session) return
 
-    this.session = wx.createVKSession({
-      track: {
-        body: { mode: 1 }  // mode 1 = 2D body detection
-      },
-      version: 'v1',
-    })
+    if (!wx.createVKSession) {
+      console.warn('[PoseDetection] VKSession not supported on this device')
+      return
+    }
+
+    try {
+      this.session = wx.createVKSession({
+        track: {
+          body: { mode: 1 }  // mode 1 = 2D body detection
+        },
+        version: 'v1',
+      })
+    } catch (e) {
+      console.error('[PoseDetection] createVKSession failed:', e)
+      return
+    }
+
+    if (!this.session) {
+      console.warn('[PoseDetection] VKSession creation returned null')
+      return
+    }
 
     this.session.on('updateAnchors', (anchors) => {
       if (!this.detecting || !anchors || anchors.length === 0) return
@@ -79,10 +94,14 @@ class PoseDetectionService {
   }
 
   stop() {
+    this.detecting = false
     if (this.session) {
-      this.detecting = false
-      this.session.stop()
-      this.session.destroy()
+      try {
+        this.session.stop()
+        this.session.destroy()
+      } catch (e) {
+        console.warn('[PoseDetection] stop error:', e)
+      }
       this.session = null
       this._frameCount = 0
     }
