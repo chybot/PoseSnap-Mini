@@ -1,0 +1,52 @@
+<view class="detail-page" wx:if="{{pose}}">
+  <!-- Hero image -->
+  <view class="hero-section">
+    <image
+      src="{{'/images/silhouettes/' + pose.silhouette}}"
+      mode="aspectFit"
+      class="hero-image"
+    />
+    <view class="hero-overlay">
+      <view class="hero-name">{{pose.name}}</view>
+      <view class="hero-difficulty {{pose.difficulty}}">
+        {{pose.difficulty === 'beginner' ? '入门' : pose.difficulty === 'intermediate' ? '进阶' : '高级'}}
+      </view>
+    </view>
+  </view>
+
+  <!-- Scene tags -->
+  <view class="scene-tags">
+    <text wx:for="{{pose.scenes}}" wx:key="*this" class="scene-tag">{{item}}</text>
+    <text class="scene-tag type-tag">
+      {{pose.bodyType === 'fullBody' ? '全身' : pose.bodyType === 'upperBody' ? '上半身' : '半身'}}
+    </text>
+    <text wx:if="{{pose.selfieFriendly}}" class="scene-tag selfie-tag">自拍友好</text>
+  </view>
+
+  <!-- Tips -->
+  <view class="section">
+    <view class="section-title">关键要点</view>
+    <view wx:for="{{pose.tips}}" wx:key="*this" class="tip-item">
+      <text class="tip-num">{{index + 1}}</text>
+      <text class="tip-text">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- Mistakes -->
+  <view class="section" wx:if="{{pose.mistakes.length > 0}}">
+    <view class="section-title">常见错误</view>
+    <view wx:for="{{pose.mistakes}}" wx:key="*this" class="mistake-item">
+      <text class="mistake-icon">✕</text>
+      <text class="mistake-text">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- Action buttons -->
+  <view class="action-bar">
+    <view
+      class="fav-action {{isFavorite ? 'active' : ''}}"
+      bindtap="toggleFavorite"
+    >{{isFavorite ? '❤️ 已收藏' : '🤍 收藏'}}</view>
+    <view class="try-action" bindtap="tryPose">试拍这个姿势</view>
+  </view>
+</view>

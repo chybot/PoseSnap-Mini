@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# WeChat DevTools
+miniprogram/miniprogram_npm/
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log

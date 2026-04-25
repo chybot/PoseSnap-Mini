@@ -1,0 +1,56 @@
+<view class="compare-page">
+  <!-- Title -->
+  <view class="compare-title">
+    <text class="title-text">拍照对比</text>
+    <text wx:if="{{matchScore > 0}}" class="title-score {{matchScore > 80 ? 'high' : matchScore > 50 ? 'medium' : ''}}">
+      {{matchScore}}分
+    </text>
+  </view>
+
+  <!-- Comparison -->
+  <view class="compare-container">
+    <!-- Reference (pose silhouette) -->
+    <view class="compare-half">
+      <view class="half-label">参考姿势</view>
+      <view class="half-image">
+        <image
+          wx:if="{{pose}}"
+          src="{{'/images/silhouettes/' + pose.silhouette}}"
+          mode="aspectFit"
+          class="ref-image"
+        />
+        <view wx:if="{{pose}}" class="ref-name">{{pose.name}}</view>
+      </view>
+    </view>
+
+    <!-- User photo -->
+    <view class="compare-half">
+      <view class="half-label">你的照片</view>
+      <view class="half-image">
+        <image
+          src="{{photoPath}}"
+          mode="aspectFill"
+          class="user-image"
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- Tips -->
+  <view wx:if="{{pose}}" class="tips-section">
+    <view class="tips-title">要点提示</view>
+    <view wx:for="{{pose.tips}}" wx:key="*this" class="tip-item">
+      <text class="tip-check">✓</text>
+      <text class="tip-text">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- Actions -->
+  <view class="actions-bar">
+    <view class="action-btn secondary" bindtap="retake">再来一次</view>
+    <view class="action-btn primary" bindtap="saveAndShare">保存分享</view>
+  </view>
+
+  <!-- Watermark -->
+  <view class="watermark">PoseSnap</view>
+</view>

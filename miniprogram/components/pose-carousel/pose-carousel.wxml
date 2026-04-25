@@ -1,0 +1,11 @@
+<scroll-view class="carousel" scroll-x enhanced show-scrollbar="{{false}}">
+  <view
+    wx:for="{{poses}}"
+    wx:key="id"
+    class="thumb {{selectedId === item.id ? 'selected' : ''}}"
+    bindtap="onSelect"
+    data-id="{{item.id}}"
+  >
+    <text class="thumb-text">{{item.name}}</text>
+  </view>
+</scroll-view>

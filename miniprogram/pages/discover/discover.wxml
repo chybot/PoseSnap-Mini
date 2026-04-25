@@ -1,0 +1,95 @@
+<view class="discover-page">
+  <!-- Search -->
+  <view class="search-bar">
+    <input
+      class="search-input"
+      placeholder="搜索姿势"
+      value="{{searchKeyword}}"
+      bindinput="onSearchInput"
+      confirm-type="search"
+      bindconfirm="onSearch"
+    />
+  </view>
+
+  <!-- Category tabs -->
+  <scroll-view class="category-tabs" scroll-x enhanced show-scrollbar="{{false}}">
+    <view
+      class="cat-tab {{currentCategory === 'all' ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-id="all"
+    >全部</view>
+    <view
+      wx:for="{{categories}}"
+      wx:key="id"
+      class="cat-tab {{currentCategory === item.id ? 'active' : ''}}"
+      bindtap="selectCategory"
+      data-id="{{item.id}}"
+    >{{item.name}}</view>
+  </scroll-view>
+
+  <!-- Difficulty filter -->
+  <view class="difficulty-filter">
+    <view
+      class="diff-tag {{difficulty === '' ? 'active' : ''}}"
+      bindtap="selectDifficulty"
+      data-level=""
+    >全部</view>
+    <view
+      class="diff-tag {{difficulty === 'beginner' ? 'active' : ''}}"
+      bindtap="selectDifficulty"
+      data-level="beginner"
+    >入门</view>
+    <view
+      class="diff-tag {{difficulty === 'intermediate' ? 'active' : ''}}"
+      bindtap="selectDifficulty"
+      data-level="intermediate"
+    >进阶</view>
+    <view
+      class="diff-tag {{difficulty === 'advanced' ? 'active' : ''}}"
+      bindtap="selectDifficulty"
+      data-level="advanced"
+    >高级</view>
+  </view>
+
+  <!-- Pose grid -->
+  <scroll-view class="pose-grid-scroll" scroll-y enhanced>
+    <view class="pose-grid">
+      <view
+        wx:for="{{filteredPoses}}"
+        wx:key="id"
+        class="pose-card"
+        bindtap="openPoseDetail"
+        data-id="{{item.id}}"
+      >
+        <view class="card-image">
+          <view class="card-placeholder">
+            <text class="card-icon">🧍</text>
+          </view>
+          <view class="card-difficulty {{item.difficulty}}">
+            {{item.difficulty === 'beginner' ? '入门' : item.difficulty === 'intermediate' ? '进阶' : '高级'}}
+          </view>
+        </view>
+        <view class="card-info">
+          <view class="card-name">{{item.name}}</view>
+          <view class="card-scenes">
+            <text wx:for="{{item.scenes}}" wx:key="*this" wx:for-item="scene" class="scene-label">{{scene}}</text>
+          </view>
+        </view>
+        <view class="card-actions">
+          <view
+            class="fav-btn {{isFavorite(item.id) ? 'active' : ''}}"
+            catchtap="toggleFavorite"
+            data-id="{{item.id}}"
+          >{{favorites[item.id] ? '❤️' : '🤍'}}</view>
+          <view class="try-btn" catchtap="tryPose" data-id="{{item.id}}">试拍</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Empty state -->
+    <view wx:if="{{filteredPoses.length === 0}}" class="empty-state">
+      <text class="empty-icon">🔍</text>
+      <text class="empty-text">没有找到匹配的姿势</text>
+    </view>
+  </scroll-view>
+</view>

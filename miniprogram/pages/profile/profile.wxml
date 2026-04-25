@@ -1,0 +1,46 @@
+<view class="profile-page">
+  <!-- Stats -->
+  <view class="stats-card">
+    <view class="stat-item">
+      <text class="stat-num">{{stats.totalPhotos}}</text>
+      <text class="stat-label">拍照次数</text>
+    </view>
+    <view class="stat-divider" />
+    <view class="stat-item">
+      <text class="stat-num">{{stats.favCount}}</text>
+      <text class="stat-label">收藏姿势</text>
+    </view>
+    <view class="stat-divider" />
+    <view class="stat-item">
+      <text class="stat-num">{{stats.bestScore}}</text>
+      <text class="stat-label">最高分</text>
+    </view>
+  </view>
+
+  <!-- Menu -->
+  <view class="menu-section">
+    <view class="menu-item" bindtap="openHistory">
+      <text class="menu-icon">📸</text>
+      <text class="menu-text">拍照历史</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="openFeedback">
+      <text class="menu-icon">💬</text>
+      <text class="menu-text">意见反馈</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="shareApp">
+      <text class="menu-icon">📤</text>
+      <text class="menu-text">分享给朋友</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- About -->
+  <view class="about-section">
+    <view class="about-item">
+      <text class="about-label">版本</text>
+      <text class="about-value">1.0.0 MVP</text>
+    </view>
+  </view>
+</view>

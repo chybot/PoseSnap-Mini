@@ -1,0 +1,174 @@
+.discover-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-secondary);
+}
+
+/* Search */
+.search-bar {
+  padding: 16rpx 24rpx;
+  background: #fff;
+}
+
+.search-input {
+  background: var(--bg-secondary);
+  border-radius: 32rpx;
+  padding: 16rpx 28rpx;
+  font-size: 28rpx;
+}
+
+/* Category tabs */
+.category-tabs {
+  white-space: nowrap;
+  padding: 16rpx 24rpx;
+  background: #fff;
+  border-bottom: 1rpx solid var(--border-color);
+}
+
+.cat-tab {
+  display: inline-block;
+  padding: 12rpx 28rpx;
+  margin-right: 12rpx;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+}
+
+.cat-tab.active {
+  color: #fff;
+  background: var(--theme-color);
+}
+
+/* Difficulty filter */
+.difficulty-filter {
+  display: flex;
+  gap: 12rpx;
+  padding: 16rpx 24rpx;
+  background: #fff;
+}
+
+.diff-tag {
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  color: var(--text-hint);
+  background: var(--bg-secondary);
+}
+
+.diff-tag.active {
+  color: var(--theme-color);
+  background: var(--theme-light);
+}
+
+/* Pose grid */
+.pose-grid-scroll {
+  flex: 1;
+  overflow: hidden;
+}
+
+.pose-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16rpx;
+  gap: 16rpx;
+}
+
+.pose-card {
+  width: calc(50% - 8rpx);
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+
+.card-image {
+  width: 100%;
+  height: 280rpx;
+  background: #f0f0f0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon {
+  font-size: 80rpx;
+}
+
+.card-difficulty {
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  color: #fff;
+}
+
+.card-difficulty.beginner { background: #4CAF50; }
+.card-difficulty.intermediate { background: #FF9800; }
+.card-difficulty.advanced { background: #F44336; }
+
+.card-info {
+  padding: 16rpx;
+}
+
+.card-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.card-scenes {
+  margin-top: 8rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+.scene-label {
+  font-size: 20rpx;
+  color: var(--text-hint);
+  background: var(--bg-secondary);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16rpx 16rpx;
+}
+
+.fav-btn {
+  font-size: 36rpx;
+  padding: 8rpx;
+}
+
+.try-btn {
+  font-size: 24rpx;
+  color: var(--theme-color);
+  border: 2rpx solid var(--theme-color);
+  border-radius: 24rpx;
+  padding: 8rpx 24rpx;
+}
+
+/* Empty */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon { font-size: 80rpx; margin-bottom: 16rpx; }
+.empty-text { color: var(--text-hint); font-size: 28rpx; }

@@ -1,0 +1,27 @@
+.carousel {
+  white-space: nowrap;
+  padding: 0 24rpx;
+}
+
+.thumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100rpx;
+  height: 100rpx;
+  background: rgba(255,255,255,0.1);
+  border-radius: 16rpx;
+  margin-right: 16rpx;
+  border: 3rpx solid transparent;
+}
+
+.thumb.selected {
+  background: rgba(255,255,255,0.3);
+  border-color: #fff;
+}
+
+.thumb-text {
+  color: #fff;
+  font-size: 20rpx;
+  text-align: center;
+}

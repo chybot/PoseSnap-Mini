@@ -1,0 +1,137 @@
+.compare-page {
+  min-height: 100vh;
+  background: #1a1a1a;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 0;
+}
+
+.title-text {
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.title-score {
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 8rpx 24rpx;
+  border-radius: 24rpx;
+  background: rgba(255,255,255,0.2);
+}
+
+.title-score.high { color: #4CAF50; }
+.title-score.medium { color: #FF9800; }
+
+.compare-container {
+  display: flex;
+  gap: 16rpx;
+  margin: 24rpx 0;
+  flex: 1;
+}
+
+.compare-half {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.half-label {
+  color: rgba(255,255,255,0.6);
+  font-size: 24rpx;
+  text-align: center;
+  margin-bottom: 12rpx;
+}
+
+.half-image {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  border-radius: 16rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 500rpx;
+}
+
+.ref-image {
+  width: 80%;
+  height: 80%;
+}
+
+.ref-name {
+  position: absolute;
+  bottom: 12rpx;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255,255,255,0.7);
+  font-size: 24rpx;
+}
+
+.user-image {
+  width: 100%;
+  height: 100%;
+}
+
+.tips-section {
+  padding: 20rpx 0;
+}
+
+.tips-title {
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 12rpx;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8rpx;
+  margin-bottom: 8rpx;
+}
+
+.tip-check { color: #4CAF50; font-size: 24rpx; }
+.tip-text { color: rgba(255,255,255,0.8); font-size: 24rpx; }
+
+.actions-bar {
+  display: flex;
+  gap: 24rpx;
+  padding: 24rpx 0 48rpx;
+}
+
+.action-btn {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.action-btn.secondary {
+  color: #fff;
+  border: 2rpx solid rgba(255,255,255,0.5);
+}
+
+.action-btn.primary {
+  color: #fff;
+  background: var(--theme-color, #FF6B6B);
+}
+
+.watermark {
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  font-size: 22rpx;
+  padding-bottom: 20rpx;
+}

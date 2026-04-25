@@ -1,0 +1,159 @@
+.detail-page {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+}
+
+.hero-section {
+  height: 500rpx;
+  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 60%;
+  height: 80%;
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 24rpx;
+  left: 24rpx;
+  right: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-name {
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.hero-difficulty {
+  color: #fff;
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+}
+
+.hero-difficulty.beginner { background: #4CAF50; }
+.hero-difficulty.intermediate { background: #FF9800; }
+.hero-difficulty.advanced { background: #F44336; }
+
+.scene-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  padding: 24rpx;
+}
+
+.scene-tag {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  background: #fff;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.type-tag { color: var(--theme-color); }
+.selfie-tag { color: #2196F3; }
+
+.section {
+  margin: 0 24rpx 24rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  color: var(--text-primary);
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.tip-num {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: var(--theme-color);
+  color: #fff;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 36rpx;
+}
+
+.tip-text {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.mistake-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.mistake-icon {
+  color: #F44336;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.mistake-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+.action-bar {
+  display: flex;
+  gap: 24rpx;
+  padding: 24rpx;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  border-top: 1rpx solid var(--border-color);
+}
+
+.fav-action {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  border: 2rpx solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.fav-action.active {
+  border-color: var(--theme-color);
+  color: var(--theme-color);
+}
+
+.try-action {
+  flex: 2;
+  text-align: center;
+  padding: 24rpx 0;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  background: var(--theme-color);
+  color: #fff;
+}

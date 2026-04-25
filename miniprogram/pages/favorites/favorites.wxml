@@ -1,0 +1,34 @@
+<view class="favorites-page">
+  <view wx:if="{{favPoses.length === 0}}" class="empty-state">
+    <text class="empty-icon">❤️</text>
+    <text class="empty-title">还没有收藏</text>
+    <text class="empty-desc">在发现页点击心形图标收藏喜欢的姿势</text>
+    <view class="empty-btn" bindtap="goDiscover">去发现</view>
+  </view>
+
+  <scroll-view wx:else scroll-y class="fav-scroll" enhanced>
+    <view class="fav-grid">
+      <view
+        wx:for="{{favPoses}}"
+        wx:key="id"
+        class="fav-card"
+        bindtap="tryPose"
+        data-id="{{item.id}}"
+      >
+        <view class="fav-image">
+          <text class="fav-placeholder">🧍</text>
+          <view class="fav-difficulty {{item.difficulty}}">
+            {{item.difficulty === 'beginner' ? '入门' : item.difficulty === 'intermediate' ? '进阶' : '高级'}}
+          </view>
+        </view>
+        <view class="fav-info">
+          <text class="fav-name">{{item.name}}</text>
+          <view class="fav-actions">
+            <view class="fav-try" catchtap="tryPose" data-id="{{item.id}}">试拍</view>
+            <view class="fav-remove" catchtap="removeFavorite" data-id="{{item.id}}">取消收藏</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
