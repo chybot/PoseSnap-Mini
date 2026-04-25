@@ -8,6 +8,7 @@
     "pages/discover/pose-detail"
   ],
   "window": {
+    "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "PoseSnap",

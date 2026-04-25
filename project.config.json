@@ -45,11 +45,14 @@
     "disableSWC": true
   },
   "libVersion": "3.4.0",
-  "condition": {},
+  "condition": {
+    "miniprogram": {
+      "list": []
+    }
+  },
   "simulatorPluginLibVersion": {},
   "packOptions": {
     "ignore": [],
     "include": []
-  },
-  "editorSetting": {}
+  }
 }
