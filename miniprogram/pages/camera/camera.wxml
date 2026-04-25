@@ -1,5 +1,5 @@
 <view class="camera-page">
-  <!-- Layer 1: Camera preview -->
+  <!-- Camera preview -->
   <camera
     class="camera-preview"
     device-position="{{cameraPosition}}"
@@ -7,98 +7,90 @@
     binderror="onCameraError"
   />
 
-  <!-- Layer 2: Pose contour PNG overlay -->
-  <cover-image
+  <!-- Pose contour PNG overlay -->
+  <image
     wx:if="{{showGuide && selectedPose}}"
     class="contour-overlay"
     src="{{'/images/silhouettes/' + selectedPose.silhouette}}"
   />
 
   <!-- UI Controls overlay -->
-  <cover-view class="ui-overlay">
+  <view class="ui-overlay">
     <!-- Top bar -->
-    <cover-view class="top-bar">
-      <!-- Scene tag -->
-      <cover-view wx:if="{{currentScene}}" class="scene-tag">
-        <cover-view class="scene-text">{{currentScene}}</cover-view>
-      </cover-view>
+    <view class="top-bar">
+      <!-- Guidance tip bubble -->
+      <view wx:if="{{showGuide && guidanceTip}}" class="guidance-bubble">
+        <text class="bubble-text">{{guidanceTip}}</text>
+      </view>
 
-      <!-- Guidance tip bubble (竞品同款气泡) -->
-      <cover-view wx:if="{{showGuide && guidanceTip}}" class="guidance-bubble">
-        <cover-view class="bubble-text">{{guidanceTip}}</cover-view>
-      </cover-view>
-
-      <cover-view class="top-spacer" />
+      <view class="top-spacer" />
 
       <!-- Match score circle -->
-      <cover-view wx:if="{{showGuide && matchScore > 0}}" class="score-circle {{scoreClass}}">
-        <cover-view class="score-num">{{matchScore}}</cover-view>
-        <cover-view class="score-unit">分</cover-view>
-      </cover-view>
+      <view wx:if="{{showGuide && matchScore > 0}}" class="score-circle {{scoreClass}}">
+        <text class="score-num">{{matchScore}}</text>
+        <text class="score-unit">分</text>
+      </view>
 
       <!-- Guide toggle -->
-      <cover-view class="guide-toggle {{showGuide ? 'on' : ''}}" bindtap="toggleGuide">
-        <cover-view class="toggle-text">{{showGuide ? '引导' : '引导'}}</cover-view>
-      </cover-view>
-    </cover-view>
+      <view class="guide-toggle {{showGuide ? 'on' : ''}}" bindtap="toggleGuide">
+        <text class="toggle-text">引导</text>
+      </view>
+    </view>
 
-    <!-- Tips bar (竞品同款：精简要点) -->
-    <cover-view wx:if="{{showGuide && selectedPose}}" class="pose-tips-bar">
-      <cover-view class="tips-header">
-        <cover-view class="tips-title">{{selectedPose.name}}</cover-view>
-        <cover-view class="tips-difficulty">
+    <!-- Tips bar -->
+    <view wx:if="{{showGuide && selectedPose}}" class="pose-tips-bar">
+      <view class="tips-header">
+        <text class="tips-title">{{selectedPose.name}}</text>
+        <text class="tips-difficulty">
           {{selectedPose.difficulty === 'beginner' ? '入门' : selectedPose.difficulty === 'intermediate' ? '进阶' : '高级'}}
-        </cover-view>
-      </cover-view>
-      <cover-view wx:for="{{selectedPose.tips}}" wx:key="*this" class="tip-row">
-        <cover-view class="tip-bullet">•</cover-view>
-        <cover-view class="tip-content">{{item}}</cover-view>
-      </cover-view>
-    </cover-view>
+        </text>
+      </view>
+      <view wx:for="{{selectedPose.tips}}" wx:key="*this" class="tip-row">
+        <text class="tip-bullet">·</text>
+        <text class="tip-content">{{item}}</text>
+      </view>
+    </view>
 
     <!-- Bottom: pose carousel + controls -->
-    <cover-view class="bottom-section">
+    <view class="bottom-section">
       <!-- Pose carousel -->
-      <cover-view class="carousel-wrap">
-        <cover-view class="carousel-scroll">
-          <cover-view
+      <view class="carousel-wrap">
+        <scroll-view class="carousel-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+          <view
             wx:for="{{recommendedPoses}}"
             wx:key="id"
             class="pose-thumb {{selectedPose.id === item.id ? 'selected' : ''}}"
             bindtap="selectPose"
             data-id="{{item.id}}"
           >
-            <cover-view class="thumb-name">{{item.name}}</cover-view>
-          </cover-view>
-        </cover-view>
-      </cover-view>
+            <text class="thumb-name">{{item.name}}</text>
+          </view>
+        </scroll-view>
+      </view>
 
       <!-- Controls row -->
-      <cover-view class="controls-row">
-        <!-- Switch camera -->
-        <cover-view class="ctrl-btn" bindtap="switchCamera">
-          <cover-view class="ctrl-icon">🔄</cover-view>
-          <cover-view class="ctrl-label">翻转</cover-view>
-        </cover-view>
+      <view class="controls-row">
+        <view class="ctrl-btn" bindtap="switchCamera">
+          <text class="ctrl-icon">🔄</text>
+          <text class="ctrl-label">翻转</text>
+        </view>
 
-        <!-- Shutter -->
-        <cover-view class="shutter-btn" bindtap="takePhoto">
-          <cover-view class="shutter-inner" />
-        </cover-view>
+        <view class="shutter-btn" bindtap="takePhoto">
+          <view class="shutter-inner" />
+        </view>
 
-        <!-- Mode: 拍照/录像 -->
-        <cover-view class="ctrl-btn" bindtap="openLibrary">
-          <cover-view class="ctrl-icon">📖</cover-view>
-          <cover-view class="ctrl-label">姿势库</cover-view>
-        </cover-view>
-      </cover-view>
+        <view class="ctrl-btn" bindtap="openLibrary">
+          <text class="ctrl-icon">📖</text>
+          <text class="ctrl-label">姿势库</text>
+        </view>
+      </view>
 
-      <!-- Mode tabs (竞品同款) -->
-      <cover-view class="mode-tabs">
-        <cover-view class="mode-tab" bindtap="switchMode" data-mode="video">录像</cover-view>
-        <cover-view class="mode-tab active">拍照</cover-view>
-        <cover-view class="mode-tab" bindtap="switchMode" data-mode="portrait">人像</cover-view>
-      </cover-view>
-    </cover-view>
-  </cover-view>
+      <!-- Mode tabs -->
+      <view class="mode-tabs">
+        <text class="mode-tab" bindtap="switchMode" data-mode="video">录像</text>
+        <text class="mode-tab active">拍照</text>
+        <text class="mode-tab" bindtap="switchMode" data-mode="portrait">人像</text>
+      </view>
+    </view>
+  </view>
 </view>

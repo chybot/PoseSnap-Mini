@@ -189,7 +189,7 @@
 .carousel-scroll {
   display: flex;
   gap: 12rpx;
-  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .pose-thumb {
