@@ -12,6 +12,7 @@
     wx:if="{{showGuide && selectedPose}}"
     class="contour-overlay"
     src="{{'/images/silhouettes/' + selectedPose.silhouette}}"
+    mode="aspectFit"
   />
 
   <!-- UI Controls overlay -->
