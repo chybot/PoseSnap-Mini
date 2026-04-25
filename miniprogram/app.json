@@ -58,10 +58,5 @@
   },
   "componentFramework": "glass-easel",
   "lazyCodeLoading": "requiredComponents",
-  "sitemapLocation": "sitemap.json",
-  "permission": {
-    "scope.camera": {
-      "desc": "用于实时拍照引导"
-    }
-  }
+  "sitemapLocation": "sitemap.json"
 }

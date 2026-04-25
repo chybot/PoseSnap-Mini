@@ -2,7 +2,7 @@
  * 姿势数据管理服务
  * 负责姿势库加载、收藏管理、推荐排序
  */
-const poseData = require('../data/pose_library.json')
+const poseData = require('../data/pose_library')
 
 const FAVORITES_KEY = 'posesnap_favorites'
 const HISTORY_KEY = 'posesnap_history'
