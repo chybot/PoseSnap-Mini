@@ -7,11 +7,11 @@
     binderror="onCameraError"
   />
 
-  <!-- Pose contour PNG overlay -->
+  <!-- Pose contour PNG overlay (hidden instead of wx:if to avoid re-compositing) -->
   <image
-    wx:if="{{showGuide && selectedPose}}"
     class="contour-overlay"
-    src="{{'/images/silhouettes/' + selectedPose.silhouette}}"
+    hidden="{{!(showGuide && selectedPose)}}"
+    src="{{contourSrc}}"
     mode="aspectFit"
   />
 
@@ -20,14 +20,14 @@
     <!-- Top bar -->
     <view class="top-bar">
       <!-- Guidance tip bubble -->
-      <view wx:if="{{showGuide && guidanceTip}}" class="guidance-bubble">
+      <view class="guidance-bubble" hidden="{{!(showGuide && guidanceTip)}}">
         <text class="bubble-text">{{guidanceTip}}</text>
       </view>
 
       <view class="top-spacer" />
 
       <!-- Match score circle -->
-      <view wx:if="{{showGuide && matchScore > 0}}" class="score-circle {{scoreClass}}">
+      <view class="score-circle {{scoreClass}}" hidden="{{!(showGuide && matchScore > 0)}}">
         <text class="score-num">{{matchScore}}</text>
         <text class="score-unit">分</text>
       </view>
@@ -39,14 +39,12 @@
     </view>
 
     <!-- Tips bar -->
-    <view wx:if="{{showGuide && selectedPose}}" class="pose-tips-bar">
+    <view class="pose-tips-bar" hidden="{{!(showGuide && selectedPose)}}">
       <view class="tips-header">
-        <text class="tips-title">{{selectedPose.name}}</text>
-        <text class="tips-difficulty">
-          {{selectedPose.difficulty === 'beginner' ? '入门' : selectedPose.difficulty === 'intermediate' ? '进阶' : '高级'}}
-        </text>
+        <text class="tips-title">{{poseName}}</text>
+        <text class="tips-difficulty">{{poseDiffLabel}}</text>
       </view>
-      <view wx:for="{{selectedPose.tips}}" wx:key="*this" class="tip-row">
+      <view wx:for="{{poseTips}}" wx:key="*this" class="tip-row">
         <text class="tip-bullet">·</text>
         <text class="tip-content">{{item}}</text>
       </view>
@@ -60,7 +58,7 @@
           <view
             wx:for="{{recommendedPoses}}"
             wx:key="id"
-            class="pose-thumb {{selectedPose.id === item.id ? 'selected' : ''}}"
+            class="pose-thumb {{selectedPoseId === item.id ? 'selected' : ''}}"
             bindtap="selectPose"
             data-id="{{item.id}}"
           >

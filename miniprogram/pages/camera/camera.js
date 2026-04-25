@@ -1,16 +1,26 @@
 const poseStore = require('../../services/pose-store')
 const poseDetection = require('../../services/pose-detection')
 
+const DIFF_LABELS = { beginner: '入门', intermediate: '进阶', advanced: '高级' }
+
 Page({
   data: {
     cameraPosition: 'back',
     showGuide: true,
-    selectedPose: null,
+    selectedPose: false,
+    selectedPoseId: '',
+    contourSrc: '',
+    poseName: '',
+    poseDiffLabel: '',
+    poseTips: [],
     recommendedPoses: [],
     guidanceTip: '',
     matchScore: 0,
     scoreClass: '',
   },
+
+  // Keep full pose object off setData (joints data is heavy)
+  _currentPose: null,
 
   onLoad() {
     const preSelected = poseStore.selectedPose
@@ -22,7 +32,8 @@ Page({
     const selected = preSelected || recommended[0] || null
     poseStore.selectedPose = null
 
-    this.setData({ recommendedPoses: recommended, selectedPose: selected })
+    this.setData({ recommendedPoses: recommended })
+    this._applyPose(selected)
   },
 
   onReady() {
@@ -35,26 +46,47 @@ Page({
 
   onShow() {
     if (poseStore.selectedPose) {
-      this.setData({ selectedPose: poseStore.selectedPose })
+      this._applyPose(poseStore.selectedPose)
       poseStore.selectedPose = null
     }
     if (this._wasDetecting) this._startDetection()
   },
 
-  // --- VKSession: 只取匹配分数和引导文案 ---
+  _applyPose(pose) {
+    this._currentPose = pose
+    if (pose) {
+      this.setData({
+        selectedPose: true,
+        selectedPoseId: pose.id,
+        contourSrc: '/images/silhouettes/' + pose.silhouette,
+        poseName: pose.name,
+        poseDiffLabel: DIFF_LABELS[pose.difficulty] || '',
+        poseTips: pose.tips || [],
+      })
+    } else {
+      this.setData({
+        selectedPose: false,
+        selectedPoseId: '',
+        contourSrc: '',
+        poseName: '',
+        poseDiffLabel: '',
+        poseTips: [],
+      })
+    }
+  },
+
   _startDetection() {
     this._wasDetecting = true
 
-    poseDetection.onDetected = (joints, peopleCount) => {
+    poseDetection.onDetected = (joints) => {
       if (!joints) {
         this.setData({ guidanceTip: '请站到镜头前', matchScore: 0, scoreClass: '' })
         return
       }
 
-      const { selectedPose, showGuide } = this.data
-      if (!showGuide || !selectedPose) return
+      if (!this.data.showGuide || !this._currentPose) return
 
-      const match = poseDetection.computeMatch(joints, selectedPose.joints)
+      const match = poseDetection.computeMatch(joints, this._currentPose.joints)
 
       let scoreClass = ''
       if (match.score > 80) scoreClass = 'high'
@@ -70,14 +102,14 @@ Page({
     poseDetection.start()
   },
 
-  // --- Actions ---
   takePhoto() {
     this.cameraCtx.takePhoto({
       quality: 'high',
       success: (res) => {
-        if (this.data.selectedPose) poseStore.recordUsage(this.data.selectedPose.id)
+        const pose = this._currentPose
+        if (pose) poseStore.recordUsage(pose.id)
         wx.navigateTo({
-          url: `/pages/camera/compare?photo=${encodeURIComponent(res.tempImagePath)}&poseId=${this.data.selectedPose ? this.data.selectedPose.id : ''}`,
+          url: `/pages/camera/compare?photo=${encodeURIComponent(res.tempImagePath)}&poseId=${pose ? pose.id : ''}`,
         })
       },
       fail: () => wx.showToast({ title: '拍照失败', icon: 'none' }),
@@ -98,7 +130,7 @@ Page({
 
   selectPose(e) {
     const pose = poseStore.getPoseById(e.currentTarget.dataset.id)
-    if (pose) this.setData({ selectedPose: pose })
+    if (pose) this._applyPose(pose)
   },
 
   switchMode(e) {
